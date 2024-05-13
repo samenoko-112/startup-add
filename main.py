@@ -25,7 +25,7 @@ def main(page:Page):
             key_value = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"
             try:
                 key = winreg.OpenKey(key, key_value, 0, winreg.KEY_ALL_ACCESS)
-                winreg.SetValueEx(key, "MyApp", 0, winreg.REG_SZ, file_path.value)
+                winreg.SetValueEx(key, f"{os.path.basename(file_path.value)}", 0, winreg.REG_SZ, file_path.value)
                 winreg.CloseKey(key)
                 page.snack_bar = SnackBar(content=Text("Added to startup"))
                 page.snack_bar.open = True
